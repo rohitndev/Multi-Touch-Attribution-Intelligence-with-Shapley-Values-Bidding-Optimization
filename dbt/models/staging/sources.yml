@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: ga4
+    description: "Raw GA4 -> BigQuery native export, landed by src/ingestion."
+    database: "{{ env_var('GOOGLE_CLOUD_PROJECT', 'local') }}"
+    schema: attribution
+    tables:
+      - name: ga4_events
+        description: "Touchpoint-level customer-journey events."
+        columns:
+          - name: user_id
+            tests: [not_null]
+          - name: channel
+            tests: [not_null]

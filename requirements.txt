@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------------------
+# Core dependencies (required) — the end-to-end attribution pipeline runs on
+# these alone, fully offline, with the built-in synthetic journey generator.
+# ---------------------------------------------------------------------------
+numpy>=1.24,<2.2
+pandas>=2.0,<2.3
+scipy>=1.10,<1.15
+networkx>=3.0,<3.5
+matplotlib>=3.7,<3.10
+pyyaml>=6.0,<7.0
+tabulate>=0.9,<1.0
+python-dotenv>=1.0,<2.0
+
+# ---------------------------------------------------------------------------
+# Testing
+# ---------------------------------------------------------------------------
+pytest>=7.4,<9.0
+
+# ---------------------------------------------------------------------------
+# Optional cloud / LLM integrations (the pipeline auto-detects these and
+# gracefully falls back to local/mock mode when they are absent).
+# Install with:  pip install -r requirements-cloud.txt
+# ---------------------------------------------------------------------------
+# google-cloud-bigquery>=3.0      # GA4 -> BigQuery warehouse
+# google-cloud-pubsub>=2.0        # Real-time event stream
+# langchain>=0.2                  # Attribution Advisor agent
+# langchain-groq>=0.1             # Groq (Mixtral) LLM backend
+# google-ads>=23.0                # Google Ads API bid adjustment
+# facebook-business>=19.0         # Meta Marketing API bid adjustment
+# plotly>=5.18                    # Interactive Sankey diagram export
+# streamlit>=1.30                 # Budget reallocation simulator

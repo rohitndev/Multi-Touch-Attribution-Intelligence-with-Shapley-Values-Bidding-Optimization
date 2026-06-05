@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_session_stitched
+    description: "Touchpoints within the attribution window, per user."
+    columns:
+      - name: user_id
+        tests: [not_null]
+
+  - name: customer_journeys
+    description: "One row per journey with the ordered channel path."
+    columns:
+      - name: user_id
+        tests: [not_null, unique]
+      - name: path
+        tests: [not_null]
+      - name: converted
+        tests:
+          - accepted_values:
+              values: [0, 1]

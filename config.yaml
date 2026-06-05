@@ -1,0 +1,41 @@
+# ===========================================================================
+# Multi-Touch Attribution Intelligence — pipeline configuration
+# ===========================================================================
+
+# Marketing channels modelled across the platform. Order is irrelevant.
+channels:
+  - Paid Search
+  - Organic Search
+  - Display
+  - Paid Social
+  - Email
+  - Video
+  - Referral
+  - Direct
+
+# Synthetic journey generator settings (used when no GA4/BigQuery source).
+data:
+  n_users: 20000          # number of simulated customer journeys
+  max_touchpoints: 8      # exact-Shapley supports coalitions up to 8 channels
+  attribution_window_days: 30
+  seed: 42
+  avg_order_value: 85.0   # mean revenue per conversion (GBP/USD)
+
+# Composite attribution score = w_shapley * Shapley + w_markov * Markov.
+attribution:
+  weight_shapley: 0.70
+  weight_markov: 0.30
+
+# Budget optimiser (SciPy constrained optimisation).
+optimization:
+  total_budget: 2000000.0   # total monthly marketing spend to allocate
+  min_share: 0.02           # floor: every channel keeps >= 2% of budget
+  max_share: 0.40           # cap:  no channel exceeds 40% of budget
+  diminishing_returns: 0.65 # concavity exponent for revenue response curves
+  baseline_roas: 2.8        # blended ROAS at the current (even) allocation
+
+# Attribution Advisor agent.
+agent:
+  top_n: 3                  # promote the top-N attributed channels
+  bottom_n: 3               # trim the bottom-N attributed channels
+  max_bid_shift_pct: 0.25   # never move a channel's bid by more than 25%

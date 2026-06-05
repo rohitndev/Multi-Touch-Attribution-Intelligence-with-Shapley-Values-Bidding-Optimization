@@ -1,0 +1,12 @@
+# Optional cloud / LLM integrations.
+# The core pipeline (requirements.txt) runs fully offline without these.
+# Install only the ones you intend to wire up to real services.
+
+google-cloud-bigquery>=3.0
+google-cloud-pubsub>=2.0
+langchain>=0.2
+langchain-groq>=0.1
+google-ads>=23.0
+facebook-business>=19.0
+plotly>=5.18
+streamlit>=1.30

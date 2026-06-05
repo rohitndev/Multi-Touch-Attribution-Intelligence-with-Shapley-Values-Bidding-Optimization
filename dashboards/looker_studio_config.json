@@ -1,0 +1,27 @@
+{
+  "report": "Channel ROAS & Journey Sankey",
+  "tool": "Looker Studio",
+  "data_source": {
+    "type": "bigquery",
+    "project": "${GOOGLE_CLOUD_PROJECT}",
+    "dataset": "attribution",
+    "tables": ["customer_journeys", "channel_attribution"]
+  },
+  "pages": [
+    {
+      "name": "Channel ROAS",
+      "components": [
+        {"type": "scorecard", "metric": "blended_roas"},
+        {"type": "scorecard", "metric": "total_attributed_revenue"},
+        {"type": "bar", "dimension": "channel", "metric": "composite_share"},
+        {"type": "table", "dimension": "channel", "metrics": ["current_spend", "optimized_spend", "delta_pct"]}
+      ]
+    },
+    {
+      "name": "Customer Journey Sankey",
+      "components": [
+        {"type": "sankey", "source": "outputs/journey_sankey.html", "note": "Embed as community viz or static image"}
+      ]
+    }
+  ]
+}
